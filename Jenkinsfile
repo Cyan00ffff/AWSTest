@@ -9,7 +9,7 @@ pipeline {
     environment {
       AWS_ACCESS_KEY_ID = credentials('awsAccessKeyId')
       AWS_SECRET_ACCESS_KEY = credentials('awsSecretAccessKey')
-      AWS_DEFAULT_REGION = 'ap-northeast-2'//Seoul
+      AWS_DEFAULT_REGION = 'us-east-2'//Seoul
       HOME = '.' // Avoid npm root owned
     }
 
@@ -23,7 +23,7 @@ pipeline {
 
                 git url: 'https://github.com/Cyan00ffff/AWSTest.git',
                     branch: 'master',
-                    credentialsId: 'jenkinsgit'//jenkinsgit?
+                    credentialsId: 'gittest'//jenkinsgit?
             }
 
             post {
