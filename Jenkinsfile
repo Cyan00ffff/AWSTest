@@ -23,7 +23,7 @@ pipeline {
 
                 git url: 'https://github.com/Cyan00ffff/AWSTest.git',
                     branch: 'master',
-                    credentialsId: 'gittest'//jenkinsgit?
+                    credentialsId: 'jenkins'//jenkinsgit?
             }
 
             post {
