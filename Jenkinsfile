@@ -8,6 +8,11 @@ pipeline {
                 slackSend (channel: '#jenkins', color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
             }
         }
+        stage('Fail Test'){
+          steps{
+            ech ll
+          }
+        }
     }
     post {
         success {
