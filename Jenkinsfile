@@ -1,15 +1,37 @@
 pipeline {
+    agent any
+
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+                slackSend (channel: '#jenkins', color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+            }
+        }
+    }
+    post {
+        success {
+            slackSend (channel: '#jenkins', color: '#00FF00', message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+        }
+        failure {
+            slackSend (channel: '#jenkins', color: '#FF0000', message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+        }
+    }
+}
+
+
+/*pipeline {
     // 스테이지 별로 다른 거
     agent any
 
     triggers {//이 파이프라인이 몇 분 주기로 trigger 될건가 (3분)
-        pollSCM('*/3 * * * *')
+        pollSCM('H/3 * * * *')
     }
 
     environment {
       AWS_ACCESS_KEY_ID = credentials('awsAccessKeyId')
       AWS_SECRET_ACCESS_KEY = credentials('awsSecretAccessKey')
-      AWS_DEFAULT_REGION = 'us-east-2'//Seoul
+      AWS_DEFAULT_REGION = 'us-east-2'
       HOME = '.' // Avoid npm root owned
     }
 
@@ -157,3 +179,4 @@ pipeline {
         }
     }
 }
+*/
